@@ -407,6 +407,8 @@ class NovaConfigContext(ch_context.WorkerConfigContext):
             ctxt['enable_sriov_nic_selection'] = \
                 hookenv.config('enable-sriov-nic-selection')
 
+        ctxt['skip_hosts_with_build_failures'] = hookenv.config(
+            'skip-hosts-with-build-failures')
         return ctxt
 
 

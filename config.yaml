@@ -609,3 +609,19 @@ options:
       override YAML files in the service's policy.d directory.  The resource
       file should be a ZIP file containing at least one yaml file with a .yaml
       or .yml extension.  If False then remove the overrides.
+  skip-hosts-with-build-failures:  # LP: 1892934
+    type: boolean
+    default: False  # LP: 1818239
+    description: |
+      Allow the scheduler to avoid building instances on hosts that had recent
+      build failures.
+      .
+      Since it is generally possible for an end user to cause build failures -
+      for example by providing a bad image - and maliciously reduce the pool of
+      available hypervisors, this option is disabled by default.
+      .
+      Enable to allow the scheduler to work around malfunctioning computes and
+      favor instance build reliability, at the cost of a potentially uneven
+      cloud utilization.
+      .
+      Note: only effective from Pike onward
