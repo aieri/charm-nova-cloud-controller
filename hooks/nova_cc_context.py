@@ -407,6 +407,11 @@ class NovaConfigContext(ch_context.WorkerConfigContext):
             ctxt['enable_sriov_nic_selection'] = \
                 hookenv.config('enable-sriov-nic-selection')
 
+        try:
+            ctxt['build_failure_weight_multiplier'] = float(hookenv.config(
+                'build-failure-weight-multiplier'))
+        except ValueError:
+            pass
         return ctxt
 
 

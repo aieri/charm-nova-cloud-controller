@@ -609,3 +609,17 @@ options:
       override YAML files in the service's policy.d directory.  The resource
       file should be a ZIP file containing at least one yaml file with a .yaml
       or .yml extension.  If False then remove the overrides.
+  build-failure-weight-multiplier:  # LP: 1892934
+    type: string
+    default: '0.0'  # LP: 1818239
+    description: |
+      Set to a positive value to weigh down computes that failed a build,
+      allowing the scheduler to retry on a different hypervisor.
+      .
+      If disabled (i.e. left at 0), transient failures won't cause hypervisor
+      demotions.
+      If enabled, misconfigured hypervisors may block further deployments until
+      manually disabled by an operator.
+      .
+      Set to '' to use the OpenStack upstream default (1000000.0).
+      Non-numeric values will be considered equal to ''.
